@@ -1,0 +1,95 @@
+<link rel="import" href="../../tangere/tangere.html" />
+<link rel="import" href="../../at-core-style-classes/at-core-style-classes.html" />
+<link rel="import" href="../at-core-class-toggle.html" />
+
+<dom-module id="index-demo">
+  <template>
+    <style include="at-core-style-classes">
+       :host {
+        display: block;
+        box-sizing: border-box;
+      }
+
+      .row {
+        margin-top: 32px;
+      }
+
+      .target {
+        margin-top: 16px;
+        padding: 16px;
+        border: 1px solid purple;
+      }
+
+      .target3-class-off {
+        border: 1px dotted purple;
+      }
+
+      .target3-class-off {
+        border: 1px dashed purple;
+      }
+
+      .target4-class-off {
+        border: 1px dotted purple;
+      }
+
+      .target4-class-off {
+        border: 1px dashed purple;
+      }
+
+    </style>
+
+    <div class="row">
+      <at-core-class-toggle></at-core-class-toggle>
+      <div class="target">
+        <h4 class="font-headline">No Target</h4>
+        <p class="font-body1 font-regular">This is for class-toggle with all properties at default values</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <at-core-class-toggle for="target1"></at-core-class-toggle>
+      <div id="target1" class="target">
+        <h4 class="font-headline">Target 1</h4>
+        <p class="font-body1 font-regular">This has default icons and no classOn/Off set</p>
+        <p class="font-body1 font-regular">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <at-core-class-toggle for="target2" icon-on="now:minus" icon-off="now:plus"></at-core-class-toggle>
+      <div id="target2" class="target">
+        <h4 class="font-headline">Target 2</h4>
+        <p class="font-body1 font-regular">This has custom icons and no classOn/Off set</p>
+        <p class="font-body1 font-regular">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+      </div>
+    </div>
+    <div class="row">
+      <at-core-class-toggle for="target3" class-on="target3-class-on" class-off="target3-class-off"></at-core-class-toggle>
+      <div id="target3" class="target">
+        <h4 class="font-headline">Target 3</h4>
+        <p class="font-body1 font-regular">This has default icons classOn/Off classes set</p>
+        <p class="font-body1 font-regular">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <at-core-class-toggle for="target4" icon-on="now:minus-filled" icon-off="now:plus-filled" class-on="target4-class-on" class-off="target4-class-off"></at-core-class-toggle>
+      <div id="target4" class="target">
+        <h4 class="font-headline">Target 4</h4>
+        <p class="font-body1 font-regular">This custom icons and classOn/Off classes set</p>
+        <p class="font-body1 font-regular">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+      </div>
+    </div>
+
+    <div class="row"></div>
+
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: "index-demo",
+    properties: {},
+    ready: function() {}
+  });
+
+</script>

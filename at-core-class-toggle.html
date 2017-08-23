@@ -1,0 +1,99 @@
+<link rel="import" href="../tangere/tangere.html" />
+<link rel="import" href="../at-carbon-icon/at-carbon-icon.html" />
+
+<dom-module id="at-core-class-toggle">
+  <template>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+      }
+    </style>
+    
+    <at-carbon-icon icon$="[[_computeIcon(value, iconOff, iconOn)]]"></at-carbon-icon>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: "at-core-class-toggle",
+    properties: {
+        
+      for: {
+        type: String,
+        value: ''
+      },
+
+      value: {
+        type: String,
+        value: "on",
+        observer: '_valueChanged',
+        xtype: 'enum',
+        xvaluelist: [
+          { title: "On", value: "on" },
+          { title: "Off", value: "off" }
+        ]
+      },
+
+      iconOn: {
+        type: String,
+        value: "now:caret-up"
+      },
+
+      iconOff: {
+        type: String,
+        value: "now:caret-down"
+      },
+
+      classOn: {
+        type: String,
+        value: ''
+      },
+
+      classOff: {
+        type: String,
+        value: ''
+      }
+
+    },
+
+    listeners: {
+      'tap': '_handleHostOnTap'
+    },
+
+    _handleHostOnTap: function(event) {
+      var newValue = this.value === "on" ? "off" : "on";
+      this._updateInternalState(newValue);
+      this.fire('value-changed', { value: newValue }, { bubbles: false });
+    },
+
+    _computeIcon: function(value, iconOff, iconOn) {
+      return value === "on" ? iconOff : iconOn;
+    },
+
+    _updateInternalState: function(newValue) {
+      this.value = newValue;
+
+      var forElem = document.getElementById(this.for);
+      if (!forElem) return;
+
+      if (this.classOn) {
+        this.toggleClass(this.classOn, newValue === "on", forElem);
+      }
+      if (this.classOff) {
+        this.toggleClass(this.classOff, newValue === "off", forElem);
+      }
+    },
+
+    ready: function () {
+      this._isReady = true;
+    },
+
+    _valueChanged: function(newValue, oldValue) {
+      if (["off", "on"].indexOf(newValue) === -1) return;
+      this._updateInternalState(newValue);
+      if (this._isReady) {
+        this.fire('value-changed', { value: newValue }, { bubbles: false });
+      }
+    }
+  });
+</script>
