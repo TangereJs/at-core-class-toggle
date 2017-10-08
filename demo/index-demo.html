@@ -17,23 +17,15 @@
       .target {
         margin-top: 16px;
         padding: 16px;
-        border: 1px solid purple;
+        border: 1px solid black;
       }
 
-      .target3-class-off {
-        border: 1px dotted purple;
+      .class-on {
+        border: 2px dotted blue;
       }
 
-      .target3-class-off {
-        border: 1px dashed purple;
-      }
-
-      .target4-class-off {
-        border: 1px dotted purple;
-      }
-
-      .target4-class-off {
-        border: 1px dashed purple;
+      .class-off {
+        border: 2px solid blue;
       }
 
     </style>
@@ -64,7 +56,7 @@
       </div>
     </div>
     <div class="row">
-      <at-core-class-toggle for="target3" class-on="target3-class-on" class-off="target3-class-off"></at-core-class-toggle>
+      <at-core-class-toggle for="target3" class-on="class-on" class-off="class-off"></at-core-class-toggle>
       <div id="target3" class="target">
         <h4 class="font-headline">Target 3</h4>
         <p class="font-body1 font-regular">This has default icons classOn/Off classes set</p>
@@ -73,7 +65,7 @@
     </div>
 
     <div class="row">
-      <at-core-class-toggle for="target4" icon-on="now:minus-filled" icon-off="now:plus-filled" class-on="target4-class-on" class-off="target4-class-off"></at-core-class-toggle>
+      <at-core-class-toggle on for="target4" icon-on="now:minus-filled" icon-off="now:plus-filled" class-on="class-on" class-off="class-off"></at-core-class-toggle>
       <div id="target4" class="target">
         <h4 class="font-headline">Target 4</h4>
         <p class="font-body1 font-regular">This custom icons and classOn/Off classes set</p>
