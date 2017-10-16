@@ -27,7 +27,7 @@
       value: {
         type: String,
         value: "on",
-        observer: '_valueChanged',
+        reflectToAttribute: true,
         xtype: 'enum',
         xvaluelist: [
           { title: "On", value: "on" },
@@ -61,40 +61,43 @@
       'tap': '_handleHostOnTap'
     },
 
+    observers: [
+      '_updateInternalState(for, value, classOn, classOff)'
+    ],
+
     _handleHostOnTap: function(event) {
-      var newValue = this.value === "on" ? "off" : "on";
-      this._updateInternalState(newValue);
-      this.fire('value-changed', { value: newValue }, { bubbles: false });
+      this.value = this.value === "on" ? "off" : "on";
+    },
+
+    attached: function() {
+      this._isAttached = true;
+      this._updateInternalState(this.for, this.value, this.classOn, this.classOff);
     },
 
     _computeIcon: function(value, iconOff, iconOn) {
       return value === "on" ? iconOff : iconOn;
     },
 
-    _updateInternalState: function(newValue) {
-      this.value = newValue;
+    _updateInternalState: function(forValue, value, classOn, classOff) {
+      // value changed should always fire
+      this.fire('value-changed', { value: value }, { bubbles: false });
 
-      var forElem = document.getElementById(this.for);
+      // if element is not attached document.getElementById will always return null
+      if (!this._isAttached) return;
+      
+      // if value is not valid, return
+      if (["off", "on"].indexOf(value) === -1) return;
+
+      var forElem = document.getElementById(forValue);
       if (!forElem) return;
 
-      if (this.classOn) {
-        this.toggleClass(this.classOn, newValue === "on", forElem);
+      if (classOn) {
+        this.toggleClass(classOn, value === "on", forElem);
       }
-      if (this.classOff) {
-        this.toggleClass(this.classOff, newValue === "off", forElem);
-      }
-    },
-
-    ready: function () {
-      this._isReady = true;
-    },
-
-    _valueChanged: function(newValue, oldValue) {
-      if (["off", "on"].indexOf(newValue) === -1) return;
-      this._updateInternalState(newValue);
-      if (this._isReady) {
-        this.fire('value-changed', { value: newValue }, { bubbles: false });
+      if (classOff) {
+        this.toggleClass(classOff, value === "off", forElem);
       }
     }
+
   });
 </script>
